@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>interactice100mRadiusV1OSM</title>
+        <title>interactive100mRadiusV1OSM</title>
 		<!-- Original code by: Kobi Irom kobi@locint.io -->
         <meta charset="utf-8" />
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
