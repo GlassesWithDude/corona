@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>interactive100mRadiusV1Mapbox</title>
+        <title>interactive100mRadiusV1OSM</title>
 		<!-- Original code by: Kobi Irom kobi@locint.io -->
         <meta charset="utf-8" />
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -11,23 +11,21 @@
 		  crossorigin=""></script>
         <style>
             #mapid { 
-                height: 80%; 
+                height: 65%; 
                 width: 100%;
             }
         </style>
     </head>
     <body>
-        <h3>Click anywhere on the map to see your 100 meter radius</h3>
+        <h2 style="color:white; text-align:center; font-size:100%;">Click anywhere on the map to see your 100, 500, and 1,000 meter radius</h2>
         <div id="mapid"></div>
-        <h6>Original code by: Kobi Irom kobi@locint.io</h6>
+        <h6 style="color:white; text-align:center;">Original code by: Kobi Irom</h6>
+<h6 style="color:white; text-align:center;">Contact us for all your mapping needs: kobi@locint.io</h6>
     </body>
     <script>
         var mymap = L.map('mapid').setView([32.187, 34.871], 13);
-		
-		///************************************
-		///INSERT MAPBOX API INSTEAD OF [TOEKN]
-		///************************************
-        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=[TOKEN]', {
+
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=sk.eyJ1IjoibG9jYXRlc29sdXRpb25zIiwiYSI6ImNqOHIzemF3ZjB3anAzM3AzejA0cXphOWkifQ.VO8tWLmM41gujskLwiACDw', {
             attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
             maxZoom: 22,
             id: 'mapbox.streets',
@@ -35,17 +33,38 @@
         }).addTo(mymap);
 
         var clickCircle;
+		var clickCircle2;
+		var clickCircle3;
+		var clickPoint;
 
 		  function onMapClick(e) {
 			if (clickCircle != undefined) {
-			  mymap.removeLayer(clickCircle);
+			  //mymap.removeLayer(clickCircle);
+			   mymap.removeLayer(clickCircle);
+			   mymap.removeLayer(clickCircle2);
+			   mymap.removeLayer(clickCircle3);
+			   mymap.removeLayer(clickPoint);
 			};
-			clickCircle = L.circle(e.latlng, 100, {
+			clickCircle = L.circle(e.latlng, 500, {
 			  color: 'red',
 			  fillColor: '#f03',
 			  fillOpacity: 0.2,
 			  opacity: 0.5
 			}).addTo(mymap);
+			clickCircle2 = L.circle(e.latlng, 100, {
+			  color: 'blue',
+			  fillColor: '#f03',
+			  fillOpacity: 0,
+			  opacity: 0.5
+			}).addTo(mymap);
+			clickCircle3 = L.circle(e.latlng, 1000, {
+			  color: 'blue',
+			  fillColor: '#f03',
+			  fillOpacity: 0.2,
+			  opacity: 0.5
+			}).addTo(mymap);
+			clickPoint = L.marker(e.latlng).addTo(mymap);
+			
 		  }
 
 		mymap.on('click', onMapClick);
