@@ -41,19 +41,39 @@
             }).addTo(mymap);
 
         var clickCircle;
+		var clickCircle2;
+		var clickCircle3;
+		var clickPoint;
 
 		  function onMapClick(e) {
 			if (clickCircle != undefined) {
-			  mymap.removeLayer(clickCircle);
+			  //mymap.removeLayer(clickCircle);
+			   mymap.removeLayer(clickCircle);
+			   mymap.removeLayer(clickCircle2);
+			   mymap.removeLayer(clickCircle3);
+			   mymap.removeLayer(clickPoint);
 			};
-			clickCircle = L.circle(e.latlng, 100, {
+			clickCircle = L.circle(e.latlng, 500, {
 			  color: 'red',
 			  fillColor: '#f03',
 			  fillOpacity: 0.2,
 			  opacity: 0.5
 			}).addTo(mymap);
+			clickCircle2 = L.circle(e.latlng, 100, {
+			  color: 'blue',
+			  fillColor: '#f03',
+			  fillOpacity: 0,
+			  opacity: 0.5
+			}).addTo(mymap);
+			clickCircle3 = L.circle(e.latlng, 1000, {
+			  color: 'blue',
+			  fillColor: '#f03',
+			  fillOpacity: 0.2,
+			  opacity: 0.5
+			}).addTo(mymap);
+			clickPoint = L.marker(e.latlng).addTo(mymap);
+			
 		  }
-
 		mymap.on('click', onMapClick);
     </script>
 </html>
